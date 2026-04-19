@@ -139,7 +139,7 @@ jobs:
             mv -f $FILE ./upload/$NEW_FILE
           done
 
-          zip -r ./upload/mt798X-Uboot_"$WRT_DATE""_Q群147032362".zip ./upload/*.*
+          zip -r ./upload/mt798X-Uboot_"$WRT_DATE".zip ./upload/*.*
 
       - name: Release Uboot
         uses: softprops/action-gh-release@master
