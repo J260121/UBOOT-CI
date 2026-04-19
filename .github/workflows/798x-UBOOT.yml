@@ -87,7 +87,7 @@ jobs:
             else
               lines_map["$rest"]="SOC=$soc BOARD=$rest VERSION=2024 ./build.sh"
             fi
-          done < <(find ./wrt/uboot-mtk-*/configs -type f -name 'mt798*defconfig' | grep -iE 'mt798[16]_' | grep -ivE 'rfb|fpga')
+          done < <(find ./wrt/uboot-mtk-*/configs -type f -name 'mt798*defconfig' | grep -iE 'mt798[6]_' | grep -ivE 'rfb|fpga')
 
           # 输出 Uboots.txt
           printf "%s\n" "${lines_map[@]}" | sort > ./Uboots.txt
@@ -134,8 +134,8 @@ jobs:
 
           for FILE in $(find ./output/ -type f -iname "*.*") ; do
             EXT=$(basename $FILE | cut -d '.' -f 2-)
-            NAME=$(basename $FILE | cut -d '.' -f 1)
-            NEW_FILE="$NAME"."_Q群147032362"."$EXT"
+            NAME=$(basename."_Q群147032362" $FILE | cut -d '.' -f 1)
+            NEW_FILE="$NAME"."$EXT"
             mv -f $FILE ./upload/$NEW_FILE
           done
 
