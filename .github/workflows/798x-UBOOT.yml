@@ -1,4 +1,4 @@
-name: AutoUboot_mt798x-dhcpd-By_dailook
+name: AutoUboot_mt798x-dhcpd-By_Yu
 
 on:
   #自动编译：每周日早上4点
@@ -10,7 +10,7 @@ on:
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   WRT_TARGET: MTK-798x
-  WRT_REPO: https://github.com/dailook/bl-mt798x-dhcp.git
+  WRT_REPO: https://github.com/J260121/mt798x-dhcpd-By_Yu.git
   WRT_BRANCH: master
 
 permissions: write-all
@@ -69,8 +69,7 @@ jobs:
 
       - name: Clone Code
         run: |
-          #git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO ./wrt/
-          git clone -b 2025 --single-branch --filter=blob:none $WRT_BRANCH $WRT_REPO ./wrt/
+          git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO ./wrt/
       - name: Compile Prepare
         run: |
           sed -i "5s/UBOOT_DIR=.*/UBOOT_DIR=${{matrix.WRT_MTK}}/" ./wrt/build.sh
