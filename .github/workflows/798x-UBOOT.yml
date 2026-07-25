@@ -69,8 +69,8 @@ jobs:
 
       - name: Clone Code
         run: |
-          git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO ./wrt/
-
+          #git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO ./wrt/
+          git clone -b 2025 --single-branch --filter=blob:none $WRT_BRANCH $WRT_REPO ./wrt/
       - name: Compile Prepare
         run: |
           sed -i "5s/UBOOT_DIR=.*/UBOOT_DIR=${{matrix.WRT_MTK}}/" ./wrt/build.sh
