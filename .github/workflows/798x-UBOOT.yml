@@ -2,8 +2,8 @@ name: AutoUboot_mt798x-dhcpd-By_Yu
 
 on:
   #自动编译：每周日早上4点
-  #schedule:
-    #- cron: 0 20 * * 0
+  schedule:
+    - cron: 0 20 * * 0
   #手动编译
   workflow_dispatch:
 
@@ -87,7 +87,7 @@ jobs:
             else
               lines_map["$rest"]="SOC=$soc BOARD=$rest VERSION=2023 ./build.sh"
             fi
-          done < <(find ./wrt/uboot-mtk-*/configs -type f -name 'mt798*defconfig' | grep -iE 'mt798[6]_ik' | grep -ivE 'rfb|fpga')
+          done < <(find ./wrt/uboot-mtk-*/configs -type f -name 'mt798*defconfig' | grep -iE 'mt798[16]_' | grep -ivE 'rfb|fpga')
 
           # 输出 Uboots.txt
           printf "%s\n" "${lines_map[@]}" | sort > ./Uboots.txt
