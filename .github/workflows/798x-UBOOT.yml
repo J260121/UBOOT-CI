@@ -1,4 +1,4 @@
-name: AutoUboot_mt798x-dhcpd-By_Yu
+name: AutoUboot_mt798x-dhcpd-By_dailook
 
 on:
   #自动编译：每周日早上4点
@@ -10,7 +10,7 @@ on:
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   WRT_TARGET: MTK-798x
-  WRT_REPO: https://github.com/J260121/mt798x-dhcpd-By_Yu.git
+  WRT_REPO: https://github.com/J260121/mt798x-dhcp-By_dailook.git
   WRT_BRANCH: master
 
 permissions: write-all
@@ -37,7 +37,7 @@ jobs:
       #max-parallel: 4
       matrix:
         WRT_ATF: [atf-20220606-637ba581b]
-        WRT_MTK: [uboot-mtk-20230718-09eda825]
+        WRT_MTK: [uboot-mtk-20250711]
 
     steps:
       - name: Checkout Projects
@@ -83,9 +83,9 @@ jobs:
             soc="${BASH_REMATCH[1]}"
             rest="${BASH_REMATCH[2]}"
             if [[ $rest == *_multi_layout ]]; then
-              lines_map["$rest"]="SOC=$soc BOARD=$rest MULTI_LAYOUT=1 VERSION=2024 ./build.sh"
+              lines_map["$rest"]="SOC=$soc BOARD=$rest MULTI_LAYOUT=1 VERSION=2025 ./build.sh"
             else
-              lines_map["$rest"]="SOC=$soc BOARD=$rest VERSION=2024 ./build.sh"
+              lines_map["$rest"]="SOC=$soc BOARD=$rest VERSION=2025 ./build.sh"
             fi
           done < <(find ./wrt/uboot-mtk-*/configs -type f -name 'mt798*defconfig' | grep -iE 'mt798[6]_ik' | grep -ivE 'rfb|fpga')
 
