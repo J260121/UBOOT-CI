@@ -53,6 +53,8 @@ jobs:
       - name: Compile Prepare
         run: |
           # 收集 uboot 配置并生成 Uboots.txt
+          find ./wrt/uboot-mtk-20250711/configs -type f -name "mt*defconfig" > ./file_list.txt
+          echo ./file_list.txt
           declare -A lines_map
           while IFS= read -r f; do
             [[ $(basename "$f") =~ ^(mt798[16])-(.*)_defconfig$ ]] || continue
