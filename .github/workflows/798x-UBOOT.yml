@@ -44,6 +44,8 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
+          sudo -E apt -yqq update
+          sudo -E apt -yqq install dos2unix bison build-essential device-tree-compiler flex gcc-aarch64-linux-gnu libssl-dev qemu-user-static
           sudo -E timedatectl set-timezone "Asia/Shanghai"
       - name: Clone Code
         run: |
