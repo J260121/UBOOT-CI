@@ -45,6 +45,7 @@ jobs:
           DEBIAN_FRONTEND: noninteractive
         run: |
           sudo -E apt -yqq update
+          sudo -E apt -ypp install gcc-aarch64-linux-gnu build-essential flex bison libssl-dev device-tree-compiler qemu-user-static nodejs npm
           sudo -E apt -yqq install dos2unix bison build-essential device-tree-compiler flex gcc-aarch64-linux-gnu libssl-dev qemu-user-static
           sudo -E timedatectl set-timezone "Asia/Shanghai"
       - name: Clone Code
@@ -54,9 +55,9 @@ jobs:
         run: |
           # 收集 uboot 配置并生成 Uboots.txt
           
-          echo 'make BOARD=clx_s20 VERSION=2025' > myscript.sh
-          chmod +x myscript.sh
-          myscript.sh
+          echo 'make BOARD=clx_s20 VERSION=2025' > ./myscript.sh
+          chmod +x ./myscript.sh
+          ./myscript.sh
           cd ./wrt/uboot-mtk-20250711/configs/
           find ./ -type f -name "mt*defconfig" -exec basename {} \; | sort > ./Uboots.txt
           cat ./Uboots.txt
