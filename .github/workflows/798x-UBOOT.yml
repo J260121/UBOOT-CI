@@ -54,7 +54,7 @@ jobs:
         run: |
           # 收集 uboot 配置并生成 Uboots.txt
           cd ./wrt/uboot-mtk-20250711/configs/
-          find ./ -type f -name "mt*defconfig" -exec basename {} \; sort > ./Uboots.txt
+          find ./ -type f -name "mt*defconfig" -exec basename {} \; | sort > ./Uboots.txt
           cat ./Uboots.txt
           
 
