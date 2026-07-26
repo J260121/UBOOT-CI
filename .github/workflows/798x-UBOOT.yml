@@ -63,7 +63,7 @@ jobs:
             else
               lines_map["$rest"]="SOC=$soc BOARD=$rest VERSION=SP1"
             fi
-          done < <(find ./uboot-mtk-20250711/configs -type f -name 'mt798*defconfig' | grep -iE 'mt798[6]-jdc' | grep -ivE 'rfb|fpga')
+          done < <(find ./wrt/uboot-mtk-20250711/configs -type f -name 'mt798*defconfig' | grep -iE 'mt798[6]-jdc' | grep -ivE 'rfb|fpga')
 
           # 输出 Uboots.txt
           printf "%s\n" "${lines_map[@]}" | sort > ./Uboots.txt
