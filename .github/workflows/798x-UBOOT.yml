@@ -53,7 +53,8 @@ jobs:
       - name: Compile Prepare
         run: |
           # 收集 uboot 配置并生成 Uboots.txt
-          find ./wrt/uboot-mtk-20250711/configs -type f -name "mt*defconfig" > ./file_list.txt
+          cd ./wrt/uboot-mtk-20250711/configs/
+          find ./ -type f -name "mt*defconfig" > ./file_list.txt
           cat ./file_list.txt
           
 
