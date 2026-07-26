@@ -54,18 +54,8 @@ jobs:
         run: |
           # 收集 uboot 配置并生成 Uboots.txt
           find ./wrt/uboot-mtk-20250711/configs -type f -name "mt*defconfig" > ./file_list.txt
-          echo ./file_list.txt
-          declare -A lines_map
-          while IFS= read -r f; do
-            [[ $(basename "$f") =~ ^(mt798[16])-(.*)_defconfig$ ]] || continue
-            soc="${BASH_REMATCH[1]}"
-            rest="${BASH_REMATCH[2]}"
-            if [[ $rest == *_multi_layout ]]; then
-              lines_map["$rest"]="SOC=$soc BOARD=$rest MULTI_LAYOUT=1 VERSION=SP1"
-            else
-              lines_map["$rest"]="SOC=$soc BOARD=$rest VERSION=SP1"
-            fi
-          done < <(find ./wrt/uboot-mtk-20250711/configs -type f -name 'mt798*defconfig' | grep -iE 'mt798[6]-jdc' | grep -ivE 'rfb|fpga')
+          cat ./file_list.txt
+          
 
           # 输出 Uboots.txt
           printf "%s\n" "${lines_map[@]}" | sort > ./Uboots.txt
@@ -84,9 +74,6 @@ jobs:
           # 检查权限
           mv -f Uboots.txt Uboots.sh
           find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
-
-          echo "WRT_TYPE_7981=$TYPE_7981" >> $GITHUB_ENV
-          echo "WRT_TYPE_7986=$TYPE_7986" >> $GITHUB_ENV
 
       - name: Compile Uboot
         run: |
