@@ -55,9 +55,9 @@ jobs:
         run: |
           # 收集 uboot 配置并生成 Uboots.txt
           
-          echo 'BOARD=clx_s20 VERSION=2025 ./build.sh' > ./myscript.sh
-          chmod +x ./myscript.sh
-          ./myscript.sh
+          echo 'BOARD=clx_s20 VERSION=2025 ./build.sh' > .myscript.sh
+          chmod +x myscript.sh
+          myscript.sh
           cd ./wrt/uboot-mtk-20250711/configs/
           find ./ -type f -name "mt*defconfig" -exec basename {} \; | sort > ./Uboots.txt
           cat ./Uboots.txt
