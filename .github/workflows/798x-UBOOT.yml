@@ -53,9 +53,10 @@ jobs:
       - name: Compile Prepare
         run: |
           # 收集 uboot 配置并生成 Uboots.txt
-          echo 'make BOARD=clx_s20 VERSION=2025' > ./myscript.sh
+          
+          echo 'make BOARD=clx_s20 VERSION=2025' > myscript.sh
           chmod +x myscript.sh
-          ./myscript.sh
+          myscript.sh
           cd ./wrt/uboot-mtk-20250711/configs/
           find ./ -type f -name "mt*defconfig" -exec basename {} \; | sort > ./Uboots.txt
           cat ./Uboots.txt
