@@ -36,7 +36,7 @@ jobs:
       fail-fast: false
       #max-parallel: 4
       matrix:
-        WRT_ATF: [atf-20220606-637ba581b]
+        WRT_ATF: [atf-20241017-bacca82a8]
         WRT_MTK: [uboot-mtk-20250711]
 
     steps:
@@ -83,9 +83,9 @@ jobs:
             soc="${BASH_REMATCH[1]}"
             rest="${BASH_REMATCH[2]}"
             if [[ $rest == *_multi_layout ]]; then
-              lines_map["$rest"]="SOC=$soc BOARD=$rest MULTI_LAYOUT=1 VERSION=2025 ./build.sh"
+              lines_map["$rest"]="SOC=$soc BOARD=$rest MULTI_LAYOUT=1 VERSION=2025/sp1 ./build.sh"
             else
-              lines_map["$rest"]="SOC=$soc BOARD=$rest VERSION=2023 ./build.sh"
+              lines_map["$rest"]="SOC=$soc BOARD=$rest VERSION=2025/sp1 ./build.sh"
             fi
           done < <(find ./wrt/uboot-mtk-*/configs -type f -name 'mt798*defconfig' | grep -iE 'mt798[6]_ik' | grep -ivE 'rfb|fpga')
 
