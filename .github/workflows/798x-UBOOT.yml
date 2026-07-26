@@ -56,8 +56,11 @@ jobs:
           cd ./wrt/uboot-mtk-20250711/configs/
           find ./ -type f -name "mt*defconfig" -exec basename {} \; | sort > ./Uboots.txt
           cat ./Uboots.txt
-          cd ./
-          make boards VERSION=2025
+          cd ./wrt/
+          chmod +x build.sh
+          SOC=mt7981 BOARD=cmcc_a10 VERSION=2025 MULTI_LAYOUT=1 ./build.sh
+          SOC=mt7986 BOARD=clx_s20l VERSION=2025 ./build.sh
+          SOC=mt7986 BOARD=clx_s20p VERSION=2025 ./build.sh
 
       - name: Compile Uboot
         run: |
